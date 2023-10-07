@@ -65,21 +65,21 @@ class TareaController extends Controller
         return $Tarea;
     }
 
-    public function ListarPorTitulo($TareaTitulo) {
-        $Tarea=Tarea::where($TareaTitulo);
+    public function ListarPorTitulo(Request $request) {
+        $Tarea=Tarea::where("titulo", $request->titulo)->get();
         if ($Tarea) return $Tarea;
-        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+        return response(["Mensaje"=>"Tareas no encontradas"], 404);
     }
 
-    public function ListarPorAutor($TareaAutor) {
-        $Tarea=Tarea::where($TareaAutor);
+    public function ListarPorAutor(Request $request) {
+        $Tarea=Tarea::where("autor", $request->autor)->get();
         if ($Tarea) return $Tarea;
-        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+        return response(["Mensaje"=>"Tareas no encontradas"], 404);
     }
 
-    public function ListarPorEstado($TareaEstado) {
-        $Tarea=Tarea::where($TareaEstado);
+    public function ListarPorEstado(Request $request) {
+        $Tarea=Tarea::where("estado",$request->estado)->get();
         if ($Tarea) return $Tarea;
-        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+        return response(["Mensaje"=>"Tareas no encontradas"], 404);
     }
 }
