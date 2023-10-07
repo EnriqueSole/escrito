@@ -70,4 +70,16 @@ class TareaController extends Controller
         if ($Tarea) return $Tarea;
         return response(["Mensaje"=>"Tareas no encontradas", 404]);
     }
+
+    public function ListarPorAutor($TareaAutor) {
+        $Tarea=Tarea::where($TareaAutor);
+        if ($Tarea) return $Tarea;
+        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+    }
+
+    public function ListarPorEstado($TareaEstado) {
+        $Tarea=Tarea::where($TareaEstado);
+        if ($Tarea) return $Tarea;
+        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+    }
 }
