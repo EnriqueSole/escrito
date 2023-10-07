@@ -25,5 +25,8 @@ Route::controller(TareaController::class)-> group(function (){
     Route::get("/Tarea/{id}", "Leer");
     Route::delete("/Tarea", "Eliminar");
     Route::put("/Tarea", "Modificar");
-
+    Route::get("/Tarea", "Listar");
+    Route::get("/Tarea/Titulo/{Titulo}", "ListarPorTitulo");
+    Route::get("/Tarea/Autor/{Autor}", "ListarPorAutor");
+    Route::get("/Tarea/Estado/{Estado}", "ListarPorEstado");
 });

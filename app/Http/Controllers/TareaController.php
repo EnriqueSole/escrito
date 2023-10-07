@@ -59,4 +59,15 @@ class TareaController extends Controller
        $Tarea->save();
        return $Tarea;
     }
+
+    public function Listar(){
+        $Tarea=Tarea::all();
+        return $Tarea;
+    }
+
+    public function ListarPorTitulo($TareaTitulo) {
+        $Tarea=Tarea::where($TareaTitulo);
+        if ($Tarea) return $Tarea;
+        return response(["Mensaje"=>"Tareas no encontradas", 404]);
+    }
 }
