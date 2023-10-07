@@ -33,5 +33,30 @@ class TareaController extends Controller
         if (!$Tarea) return response(["Mensaje" =>"Tarea no encontrada"], 404);
         return $Tarea;
     }
-    
+    public function Eliminar($idTarea){
+        $Tarea=Tarea::find($idTarea);
+        if (!$Tarea) return response(["Mensaje" =>"Tarea no encontrada"], 404);
+        $Tarea->delete();
+        return response(["Mensaje" => "Tarea eliminada"], 200);
+    }
+
+    public function Modificar(Request $request,$idTarea){
+        $Tarea=Tarea::find($idTarea);
+        if (!$Tarea) return response(["Mensaje" =>"Tarea no encontrada"], 404);
+        $Validaciones= Validator::make($request->all(),[
+            "titulo"=>"required",
+            "contenido"=>"required",
+            "estado"=>"required",
+            "autor"=>"required",
+        ]);
+       if ($Validaciones->fails()){
+        return response([$Validaciones->errors()], 400 );
+       }
+       if ($request->input("titulo") ) $Tarea->titulo=$request->titulo;
+       if ($request->input("contenido") ) $Tarea->contenido=$request->contenido;
+       if ($request->input("estado") ) $Tarea->estado=$request->estado;
+       if ($request->input("autor") ) $Tarea->autor=$request->autor;
+       $Tarea->save();
+       return $Tarea;
+    }
 }
